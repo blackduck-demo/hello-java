@@ -11,4 +11,12 @@ public class SqlInjection {
         ResultSet results = statement.executeQuery(query);
         return(results);
     }
+
+    public static ResultSet getEmployeeData(HttpServletRequest request, Connection connection) throws SQLException {
+            String departmentName = request.getParameter("departmentName");
+            String query = "SELECT employee_name, employee_salary FROM employees WHERE department = " + departmentName;
+            Statement statement = connection.createStatement();
+            ResultSet results = statement.executeQuery(query);
+        return results; 
+    }
 }
